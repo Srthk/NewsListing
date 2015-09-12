@@ -1,0 +1,375 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"co",
+				"conn"
+			],
+			[
+				"lo",
+				"loginPassword"
+			],
+			[
+				"Username",
+				"username"
+			],
+			[
+				"login",
+				"loginUser"
+			],
+			[
+				"username",
+				"username"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"backgrou",
+				"background-color"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"APP",
+				"APPNAME"
+			],
+			[
+				"form-",
+				"form-control"
+			],
+			[
+				"backgr",
+				"background-color"
+			],
+			[
+				"bake",
+				"BakeiOS"
+			],
+			[
+				"file",
+				"fileToUpload"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"bundl",
+				"bundle_id"
+			],
+			[
+				"imagecrea",
+				"imagecreatefrompng"
+			],
+			[
+				"new",
+				"newName"
+			],
+			[
+				"mysql_db",
+				"mysql_select_db"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"font-",
+				"font-family"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/Ruby/Ruby.sublime-build",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Applications/MAMP/htdocs/upload.php",
+		"/Applications/MAMP/htdocs/News/signup.php",
+		"/Applications/MAMP/htdocs/News/config.php",
+		"/Applications/MAMP/htdocs/News/login.html",
+		"/Applications/MAMP/htdocs/News/index.php",
+		"/Applications/MAMP/htdocs/News/index.html",
+		"/Applications/MAMP/htdocs/config.php",
+		"/Applications/MAMP/htdocs/easy-sql/login.php",
+		"/Applications/MAMP/htdocs/transfer.php",
+		"/Applications/MAMP/htdocs/display_alt.html",
+		"/Applications/MAMP/htdocs/Display_old.php",
+		"/Users/zomato/Documents/uniqueids.sql",
+		"/Applications/MAMP/htdocs/ZomatoBake/ZomatoCakeiOS/fastlane/static_metadata.txt",
+		"/Applications/MAMP/htdocs/ZomatoBake/ZomatoCakeiOS/fastlane/Fastfile",
+		"/Applications/MAMP/htdocs/deploy.sh",
+		"/Applications/MAMP/htdocs/ZomatoBake/ZomatoCakeiOS/fastlane/Deliverfile",
+		"/Applications/MAMP/htdocs/ZomatoBake/ZomatoCakeiOS/fastlane/snapshot.js",
+		"/Applications/MAMP/htdocs/ZomatoBake/ZomatoCakeiOS/zomatoCake/Info.plist",
+		"/Applications/MAMP/htdocs/ZomatoBake/ZomatoCakeiOS/zomatoCake/GoogleService-Info.plist",
+		"/Users/zomato/Documents/missing_ga.txt",
+		"/Users/zomato/Downloads/www.google.com-1440567812206",
+		"/Users/zomato/Downloads/www.google.com-1440567007999",
+		"/Users/zomato/Downloads/www.google.com-1440565427647",
+		"/Users/zomato/Downloads/www.google.com-1440565367713",
+		"/Users/zomato/Documents/Bake_Profiles/fastlane/wla.txt",
+		"/Users/zomato/Documents/wla2 (2).txt",
+		"/Applications/MAMP/htdocs/read.php",
+		"/Users/zomato/Documents/Bake_Profiles/fastlane/app_ids.txt",
+		"/Users/zomato/Downloads/wla2 (2).txt",
+		"/Users/zomato/Documents/Bake_Profiles/fastlane/Appfile",
+		"/Users/zomato/Documents/Bake_Profiles/fastlane/Fastfile",
+		"/Users/zomato/Documents/Bake_Profiles/demo.txt",
+		"/Users/zomato/Documents/Bake_Profiles/fastlane/create.sh",
+		"/Applications/MAMP/htdocs/ZomatoBake copy/ZomatoCakeiOS/fastlane/Fastfile",
+		"/Applications/MAMP/htdocs/ZomatoBake copy/ZomatoCakeiOS/zomatoCake/Info.plist",
+		"/Applications/MAMP/htdocs/ZomatoBake/ZomatoCakeiOS/fastlane/metadata.txt",
+		"/Applications/MAMP/htdocs/app_data.txt",
+		"/Applications/MAMP/htdocs/metadata.txt",
+		"/Applications/MAMP/htdocs/ZomatoBake/ZomatoCakeiOS/fastlane/Appfile",
+		"/Applications/MAMP/htdocs/ZomatoBake/ZomatoCakeiOS/fastlane/chgbundleid.sh",
+		"/Applications/MAMP/htdocs/ZomatoBake/ZomatoCakeiOS/fastlane/transfer.php",
+		"/Applications/MAMP/htdocs/ZomatoBake/ZomatoCakeiOS/fastlane/metadata.sh",
+		"/Applications/MAMP/htdocs/fastlane/Fastfile",
+		"/Applications/MAMP/htdocs/icons.html",
+		"/Applications/MAMP/htdocs/wishlist-ios-app/fastlane/deliverfile",
+		"/Applications/MAMP/htdocs/wishlist-ios-app/fastlane/Fastfile",
+		"/Users/zomato/Documents/wishlist-ios-app/fastlane/chgbundleid.sh",
+		"/Users/zomato/Documents/wishlist-ios-app/fastlane/Appfile",
+		"/Users/zomato/Downloads/EasyTipView-master/fastlane/chgbundleid.sh",
+		"/Users/zomato/Downloads/EasyTipView-master/fastlane/Fastfile",
+		"/Library/WebServer/Documents/upload.php",
+		"/Library/WebServer/Documents/icons.html"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"conn",
+			"imagecreatefrom",
+			"imagecopyresized",
+			",0",
+			"imagealphablending",
+			"\\(\\$thumb.*, ",
+			"imagepng",
+			"thumb",
+			"thumb.*x,",
+			"resized",
+			"resampled",
+			"imagepng.*'",
+			"die",
+			"resized",
+			"BakeiOS",
+			"mysqlii",
+			"mysql",
+			"mysqli_query\\(",
+			"mysql",
+			"mysqli",
+			"scrollViews\\(\\)\\[1\\]",
+			"<string>GoogleUrlScheme</string>\n			<key>CFBundleURLSchemes</key>\n			<array><string>.*</string>",
+			"com.*\\.",
+			"Appstore.*",
+			"\\ninvalid",
+			"_",
+			" , ",
+			"\\[<li.*]",
+			"\\[<li\\*",
+			"\\[<li*",
+			"[<li*",
+			"_",
+			" , ",
+			"VM1477:2 ",
+			", ",
+			" ,",
+			"UA",
+			"_",
+			"VM1106:2 ",
+			"74063575",
+			"_cert.p12",
+			"	",
+			"\\t",
+			"read",
+			"\n  ",
+			"padding",
+			"keyw",
+			"btn",
+			"icons",
+			"php",
+			"ENV",
+			"form",
+			"image",
+			"disabled",
+			"icons",
+			"var",
+			"button",
+			"submit",
+			"$BUNDLEID",
+			"$APPNAME",
+			"fopen",
+			"extension=php_my",
+			"echo",
+			">\n",
+			"version",
+			"if",
+			"end",
+			")\";",
+			"\n#"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"con",
+			"imagecopyresampled",
+			",$thumb",
+			"(",
+			"file_put_contents",
+			"image",
+			"image,",
+			"resampled",
+			"resized",
+			"imagepng.*'",
+			"resampled",
+			"whitelabel_app_versions",
+			"mysqli",
+			"mysqli_query\\($con,",
+			"mysqli",
+			"scrollViews()[0]",
+			"",
+			",",
+			"",
+			",",
+			"",
+			",",
+			"",
+			"\\n",
+			"\\\\n",
+			"\\n",
+			"$row['APPNAME']",
+			"  ",
+			" ",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 151.0,
+	"status_bar_visible": true
+}

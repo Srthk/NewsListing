@@ -1,0 +1,49 @@
+body{
+	   font-family: Verdana, Geneva, sans-serif;
+	   font-size: 12px;
+}
+#content{
+	background-color: #F0F0EE;
+}
+table th{
+	background-color: #0B6FDE;
+	color: #fff;
+	padding: 0 15px 0 15px;
+}
+table td{
+	background-color: #F0F0EE;
+	color: #000;
+	padding-left: 10px;
+}
+th a:link, th a:visited, th{
+	color: #fff;
+	font-weight: normal;
+}
+td a:link{
+ color: #0B6FDE;
+}
+td a:visited{
+ color: #0B6FDD;
+ opacity: 0.9;
+}
+#logo{
+	margin-bottom: 10px;
+	margin-top: -5px;
+	color: #000;
+}
+.navbar{
+	margin-bottom: 0px;
+}
+* {
+   font-size: 13px;
+   line-height: 2;
+}
+sub, sub a{
+font-size: 9px;
+}
+.col-xs-1{
+	padding-right: 0px;
+}
+.col-xs-10{
+	padding-left: 0px;
+}
