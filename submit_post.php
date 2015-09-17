@@ -1,7 +1,8 @@
 <?php
-header('Content-type: text/html; charset=utf-8');
+//header('Content-type: text/html; charset=utf-8');
 
 include('config.php');
+
 $conn = new mysqli(HOST,USER,PASSWORD,DATABASE);
 
 function get_title($url){
@@ -14,7 +15,6 @@ function get_title($url){
 }
 //Example:
 //echo get_title("http://www.washingtontimes.com/");
-include("header.php");
 ?>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -26,20 +26,10 @@ include("header.php");
 
 </head>
 <body>
-	<div class="container">
-
-<h2>### SUBMIT NEWS URL ###</h2>
-<form class="form" method="post" action="submit_post.php">
-      <p class="field">
-        <input type="text" name="url" placeholder="Enter URL here"/>
-        <i class="fa fa-user"></i>
-      </p>
-
-      <p class="submit"><input type="submit" name="s_url" value="Login"></p>
-
-</form>
-
+	<div class="container-fluid">
 <?php
+include("header.php");
+
 if(isset($loginUser) && isset($loginPassword)){
 	$query = "SELECT user_name, user_pass FROM user_table where user_name='$loginUser'";
 	$result = $conn->query($query);
@@ -65,20 +55,34 @@ if(isset($loginUser) && isset($loginPassword)){
 				echo "Incorrect Login Session.";
 				die();
 			}
+?>
+
+		<h2>### SUBMIT NEWS URL ###</h2>
+			<form class="form" method="post" action="submit_post.php">
+			      <p class="field">
+			        <input type="text" name="url" placeholder="Enter URL here"/>
+			        <i class="fa fa-user"></i>
+			      </p>
+
+			      <p class="submit"><input type="submit" name="s_url" value="Submit"></p>
+<?php
 	}
 if(isset($_POST['s_url'])){
 		$url = $_POST['url'];
 		$title = get_title($url);
-
-		$query = "INSERT INTO posts_table (ID, Title, URL, time_stamp, by_user_id) VALUES (NULL,'$title','$url',NOW(),$loginUser)";
+		$id = fetchID();
+		$query = "INSERT INTO posts_table (ID, Title, URL, time_stamp, by_user_id) VALUES (NULL,'$title','$url',NOW()," . $id . ")";
 		$result = $conn->query($query);	
+		if(!$result){
+			echo $conn->error;
+		}
 	}
 }
 else
 {
-	echo "Invalid Session.";
+	echo "You have to be logged in to submit. Redirecting...";
+	sleep(10);
+	echo "<script>parent.location.href='login.php?submit=yes'</script>";
+
 }
-
 ?>
-</div>
-

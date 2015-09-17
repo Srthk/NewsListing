@@ -31,6 +31,14 @@ function time_elapsed_string($datetime, $full = false) {
     if (!$full) $string = array_slice($string, 0, 1);
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
+function favicon($url){
+$doc = new DOMDocument();
+$doc->strictErrorChecking = FALSE;
+$doc->loadHTML(file_get_contents($url));
+$xml = simplexml_import_dom($doc);
+$arr = $xml->xpath('//link[@rel="shortcut icon"]');
+return $arr[0]['href'];
+}
 ?>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -38,8 +46,35 @@ function time_elapsed_string($datetime, $full = false) {
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<link href="style.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
+
+	<link href="style.css" rel="stylesheet">
+	<script>
+	function showCount(id) {
+	        var xmlhttp = new XMLHttpRequest();
+	        xmlhttp.onreadystatechange = function() {
+	            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+	                var str = xmlhttp.responseText.split(",");
+	                if(str == ""){
+	                	document.location = "login.php?submit=yes";
+	                	return;
+	                }
+	                document.getElementById("upcount" + id).innerHTML = str[0];
+	                if(str[1] == "up"){
+					$('#upvote' + id).removeClass('down');
+					$('#upvote' + id).addClass('up');
+	                }	
+	                else if(str[1] == "down"){
+					$('#upvote' + id).removeClass('up');
+					$('#upvote' + id).addClass('down');
+	                }
+	            }
+	        }
+	        xmlhttp.open("GET", "upvote_count.php?for=" + id, true);
+	        xmlhttp.send();
+	    }
+	</script>
 </head>
 <body>
 <div class="container-fluid">
@@ -80,6 +115,7 @@ if(isset($loginUser) && isset($loginPassword)){
 			}
 	}
 	//UPVOTE COUNT
+	/*
 	if(isset($_GET['for'])){
 
 		if($result = $conn->query("SELECT up_votes FROM user_table WHERE user_name = '$loginUser'")){
@@ -117,7 +153,7 @@ if(isset($loginUser) && isset($loginPassword)){
 					}
 			}		
 		}
-	}
+	}*/
 }
 else{
 	//echo "<a href='login.html'>Sign In / Sign Up</a>";
@@ -130,11 +166,7 @@ else{
 include("header.php");
 ?>
 <div id="content">
-<table name="posts" style="" width="100%">
-	<tr>
-		<th colspan="3"><a href="#">Home</a> | <a href="submit_post.php">Submit Articles</a></th>
-	</tr>
-</table>
+
 <table>
 <?php
 
@@ -149,14 +181,33 @@ while($posts_row = mysqli_fetch_array($posts_result)){
 	if($count < 30){
 	$link = $posts_row[2];
 	$title = $posts_row[1];
-	$id = $posts_row[0];
+	$id = $posts_row[0]; //ID of the post
 	$votes = $posts_row[3];
 	$time = $posts_row[4];
 	$res = $conn->query("SELECT user_name FROM user_table WHERE id=" . $posts_row[5]); //To fetch username of creator of post
 	$post_user = mysqli_fetch_array($res);
+
+	if(isset($loginUser)){
+		$loginID = fetchID($conn, $loginUser);
+		$result = $conn->query("SELECT post_id FROM votes_table WHERE user_id = $loginID AND post_id  = $id");		
+		$conn->error;
+		$row = mysqli_fetch_array($result);
+	}
 	echo "<tr><td>" . ($count + 1) . ".</td>"; 
-	echo "<td>"  . " <a href='index.php?for=" . $id . "'><i class='fa fa-chevron-up'></i></a><sub> (". $posts_row[3] . " points)</sub></td>"; 
-	echo "<td><a href='" . $link . "' target='_BLANK'>" . $title . "</a> <span class='small_text'><sub>(shared by <a href='#'>" . $post_user[0] . "</a>) " . time_elapsed_string($time) . "</sub></span></td></tr>"; 
+
+	if(isset($loginID) && $row[0] == $id){
+
+		echo "<td>"  . "<span id='upvote$id' class='up' onclick='showCount($id)'><i class='fa fa-caret-up'></i></span></td>"; 
+
+	}
+	else{
+
+		echo "<td>"  . "<span id='upvote$id' class='down' onclick='showCount($id)'><i class='fa fa-caret-up'></i></span></td>"; 
+
+	}
+	$img = "<img src='http://www.google.com/s2/favicons?domain=" . $link . "' height='16'>";
+
+	echo "<td rowspan='2'>" . $img . "</td><td><a href='" . $link . "' target='_BLANK'>" . $title . "</a></td></tr><tr style='height: 0;'><td colspan='2'></td><td><span class='points'><span id='upcount$id' class='points'>". $posts_row[3] . "</span> points | </span><span class='points'>shared by <a href='#' class='points'>" . $post_user[0] . "</a> | " . time_elapsed_string($time) . "</span></td></tr>"; 
 	$count++;
 	}
 }

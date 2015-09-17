@@ -1,6 +1,6 @@
 body{
-	   font-family: Verdana, Geneva, sans-serif;
-	   font-size: 12px;
+  font-family: 'Lato';
+  font-size: 12px;
 }
 #content{
 	background-color: #F0F0EE;
@@ -8,8 +8,10 @@ body{
 table th{
 	background-color: #0B6FDE;
 	color: #fff;
-	padding: 0 15px 0 15px;
+	transition: all 0.3s;  /* Simple transition for hover effect */
+
 }
+
 table td{
 	background-color: #F0F0EE;
 	color: #000;
@@ -19,12 +21,22 @@ th a:link, th a:visited, th{
 	color: #fff;
 	font-weight: normal;
 }
+
 td a:link{
  color: #0B6FDE;
 }
 td a:visited{
  color: #0B6FDD;
  opacity: 0.9;
+}
+
+tr:nth-child(even){
+	line-height: 0.5;
+	margin-bottom: 5px;
+}
+tr:nth-child(odd){
+	line-height: 2.5;
+	margin-bottom: 5px;
 }
 #logo{
 	margin-bottom: 10px;
@@ -36,7 +48,6 @@ td a:visited{
 }
 * {
    font-size: 13px;
-   line-height: 2;
 }
 sub, sub a{
 font-size: 9px;
@@ -46,4 +57,38 @@ font-size: 9px;
 }
 .col-xs-10{
 	padding-left: 0px;
+}
+.fa-caret-up{
+	font-size: 1.6em;
+}
+.up{
+	cursor:pointer;
+	color: #0B6FDE;
+}
+.down{
+	cursor:pointer;
+}
+.points{
+	font-size: 8pt;
+}
+.topmenu {
+	display:table; width:400px; 
+	background:#0B6FDE;
+}
+.topmenu ul {
+	display:table-row; 
+}
+.topmenu a {
+	text-align: center; 
+	display:table-cell; 
+	border-right:1px solid #fff;
+}
+.topmenu li {
+	text-align: center; 
+	display:block;
+}
+th a:hover{
+background: #000; 
+color: #FFF;
+text-decoration: none;
 }

@@ -43,7 +43,6 @@ if(!$result){
 	echo $conn->error;
 }
 else
-echo "<br>Done.";
-//echo "<script>parent.location.href='index.html'</script>";
+echo "<script>parent.location.href='index.php'</script>";
 }
 ?>
