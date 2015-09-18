@@ -67,6 +67,8 @@ font-size: 9px;
 }
 .down{
 	cursor:pointer;
+	color: #000;
+
 }
 .points{
 	font-size: 8pt;
@@ -91,4 +93,7 @@ th a:hover{
 background: #000; 
 color: #FFF;
 text-decoration: none;
+}
+#or{
+	border-bottom: 3px dotted #000;
 }

@@ -39,6 +39,14 @@ $xml = simplexml_import_dom($doc);
 $arr = $xml->xpath('//link[@rel="shortcut icon"]');
 return $arr[0]['href'];
 }
+function get_title($url){
+  $str = file_get_contents($url);
+  if(strlen($str)>0){
+    $str = trim(preg_replace('/\s+/', ' ', $str)); // supports line breaks inside <title>
+    preg_match("/\<title\>(.*)\<\/title\>/i",$str,$title); // ignore case
+    return $title[1];
+  }
+}
 ?>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -81,10 +89,10 @@ return $arr[0]['href'];
 <?php
 if(isset($_POST['s'])){
 	$username=$_POST['user'];
-	echo $_SESSION['user']=$username;
+	$_SESSION['user']=$username;
 	$pwd=$_POST['password'];
 	$pwd=md5($pwd);
-	echo $_SESSION['password']=$pwd;
+	$_SESSION['password']=$pwd;
 	echo "<script>parent.location.href='index.php';</script>";
 }
 
@@ -154,6 +162,19 @@ if(isset($loginUser) && isset($loginPassword)){
 			}		
 		}
 	}*/
+
+	if(isset($_POST['s_url'])){
+		$url = $_POST['url'];
+		$title = get_title($url);
+		$id = fetchID($conn, $loginUser);
+		$query = "INSERT INTO posts_table (ID, Title, URL, time_stamp, by_user_id) VALUES (NULL,'$title','$url',NOW()," . $id . ")";
+		$result = $conn->query($query);	
+		if(!$result){
+			echo $conn->error;
+		}
+	echo "<script>parent.location.href='index.php'</script>";
+
+	}
 }
 else{
 	//echo "<a href='login.html'>Sign In / Sign Up</a>";
@@ -200,9 +221,11 @@ while($posts_row = mysqli_fetch_array($posts_result)){
 		echo "<td>"  . "<span id='upvote$id' class='up' onclick='showCount($id)'><i class='fa fa-caret-up'></i></span></td>"; 
 
 	}
+	else if(isset($loginID)){
+			echo "<td>"  . "<span id='upvote$id' class='down' onclick='showCount($id)'><i class='fa fa-caret-up'></i></span></td>"; 
+	}
 	else{
-
-		echo "<td>"  . "<span id='upvote$id' class='down' onclick='showCount($id)'><i class='fa fa-caret-up'></i></span></td>"; 
+		echo "<td>"  . "<a href='#' data-toggle='modal' data-target='#loginModal' class='down'><span id='upvote$id' class='down'><i class='fa fa-caret-up'></i></span></a></td>"; 
 
 	}
 	$img = "<img src='http://www.google.com/s2/favicons?domain=" . $link . "' height='16'>";
@@ -213,4 +236,75 @@ while($posts_row = mysqli_fetch_array($posts_result)){
 }
 ?>
 </table>
+</div>
+<!--LOGIN POPUP-->
+<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h2 class="text-center">Login</h2>
+      </div>
+      <div class="modal-body">
+          <form class="form center-block" method="POST" action="index.php">
+            <div class="form-group">
+              <input type="text" class="form-control input-lg" name="user" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control input-lg" name="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-lg btn-block" type="submit" name="s">Sign In</button>
+            </div>
+           </form>
+       </div>
+<div class="modal-header">
+<h2 class="text-center" id="or"></h2>
+  <h2 class="text-center">Register</h2>
+</div>
+      <div class="modal-body">
+          <form class="form center-block" method="POST" action="signup.php">
+            <div class="form-group">
+              <input type="text" class="form-control input-lg" name="signupUser" placeholder="Username">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control input-lg" name="signupPassword" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control input-lg" name="rePassword" placeholder="Re-enter Password">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-lg btn-block" type="submit" name="s2">Sign Up</button>
+
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+          <div class="col-md-12">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      </div>  
+      </div>
+  </div>
+  </div>
+</div>
+<!--SUBMIT POPUP-->
+<div id="submitModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h2 class="text-center">SUBMIT POST</h2>
+      </div>
+      <div class="modal-body">
+          <form class="form center-block" method="POST" action="index.php">
+            <div class="form-group">
+              <input type="url" class="form-control input-lg" name="url" placeholder="Enter URL here">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-lg btn-block" type="submit" name="s_url">Submit</button>
+            </div>
+           </form>
+       </div>
+  </div>
+  </div>
 </div>

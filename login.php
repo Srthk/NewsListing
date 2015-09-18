@@ -87,7 +87,7 @@
 <!--login modal-->
 <a href="#" data-toggle="modal" data-target="#loginModal">Login</a>
 
-<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display:none;">
+<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
   <div class="modal-dialog">
   <div class="modal-content">
       <div class="modal-header">

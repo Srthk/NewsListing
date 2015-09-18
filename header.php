@@ -92,7 +92,14 @@ else{
 		<div class="topmenu">
 	<ul>
 		<a href="index.php"><li>Home</li></a>
-  <a href="submit_post.php"><li>Submit</li></a>
+<?php
+if(isset($loginUser) && isset($loginPassword)){
+	echo "<a href='#' data-toggle='modal' data-target='#submitModal'><li>Submit</li></a>";
+}
+else{
+	echo "<a href='#' data-toggle='modal' data-target='#loginModal'><li>Submit</li></a>";
+}
+?>
 </ul>
 </div></th>
 	</tr>

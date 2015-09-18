@@ -4,20 +4,88 @@
 		"selected_items":
 		[
 			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"tex",
+				"text-decoration"
+			],
+			[
+				"mae",
+				"margin-left"
+			],
+			[
+				"fa",
+				"favicon"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"lo",
+				"loginUser"
+			],
+			[
+				"paddin",
+				"padding-left"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"mysqli_fe",
+				"mysqli_fetch_array"
+			],
+			[
+				"mysql",
+				"mysqli"
+			],
+			[
+				"f",
+				"font"
+			],
+			[
+				"padding",
+				"padding-bottom"
+			],
+			[
+				"nav",
+				"navbar-right"
+			],
+			[
+				"table",
+				"table_id"
+			],
+			[
+				"posts_",
+				"posts_row"
+			],
+			[
+				"pos",
+				"posts_query"
+			],
+			[
+				"posts_r",
+				"posts_result"
+			],
+			[
+				"mysqli_fetc",
+				"mysqli_fetch_assoc"
+			],
+			[
+				"login",
+				"loginPassword"
+			],
+			[
 				"co",
 				"conn"
 			],
 			[
-				"lo",
-				"loginPassword"
-			],
-			[
 				"Username",
 				"username"
-			],
-			[
-				"login",
-				"loginUser"
 			],
 			[
 				"username",
@@ -34,10 +102,6 @@
 			[
 				"backgrou",
 				"background-color"
-			],
-			[
-				"margin",
-				"margin-left"
 			],
 			[
 				"APP",
@@ -64,10 +128,6 @@
 				"font-size"
 			],
 			[
-				"padding",
-				"padding-left"
-			],
-			[
 				"bundl",
 				"bundle_id"
 			],
@@ -86,15 +146,87 @@
 			[
 				"text",
 				"text-transform"
-			],
-			[
-				"font-",
-				"font-family"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "logout.php",
+			"settings":
+			{
+				"buffer_size": 184,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "signup.php",
+			"settings":
+			{
+				"buffer_size": 973,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "header.php",
+			"settings":
+			{
+				"buffer_size": 3576,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "submit_post.php",
+			"settings":
+			{
+				"buffer_size": 2485,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "body{\n  font-family: 'Lato';\n  font-size: 12px;\n}\n#content{\n	background-color: #F0F0EE;\n}\ntable th{\n	background-color: #0B6FDE;\n	color: #fff;\n	transition: all 0.3s;  /* Simple transition for hover effect */\n\n}\n\ntable td{\n	background-color: #F0F0EE;\n	color: #000;\n	padding-left: 10px;\n}\nth a:link, th a:visited, th{\n	color: #fff;\n	font-weight: normal;\n}\n\ntd a:link{\n color: #0B6FDE;\n}\ntd a:visited{\n color: #0B6FDD;\n opacity: 0.9;\n}\n\ntr:nth-child(even){\n	line-height: 0.5;\n	margin-bottom: 5px;\n}\ntr:nth-child(odd){\n	line-height: 2.5;\n	margin-bottom: 5px;\n}\n#logo{\n	margin-bottom: 10px;\n	margin-top: -5px;\n	color: #000;\n}\n.navbar{\n	margin-bottom: 0px;\n}\n* {\n   font-size: 13px;\n}\nsub, sub a{\nfont-size: 9px;\n}\n.col-xs-1{\n	padding-right: 0px;\n}\n.col-xs-10{\n	padding-left: 0px;\n}\n.fa-caret-up{\n	font-size: 1.6em;\n}\n.up{\n	cursor:pointer;\n	color: #0B6FDE;\n}\n.down{\n	cursor:pointer;\n}\n.points{\n	font-size: 8pt;\n}\n.topmenu {\n	display:table; width:400px; \n	background:#0B6FDE;\n}\n.topmenu ul {\n	display:table-row; \n}\n.topmenu a {\n	text-align: center; \n	display:table-cell; \n	border-right:1px solid #fff;\n}\n.topmenu li {\n	text-align: center; \n	display:block;\n}\nth a:hover{\nbackground: #000; \ncolor: #FFF;\ntext-decoration: none;\n}\n.sign-up table ",
+			"file": "style.css",
+			"file_size": 1219,
+			"file_write_time": 1442423507000000,
+			"settings":
+			{
+				"buffer_size": 1234,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "login.php",
+			"settings":
+			{
+				"buffer_size": 4516,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "upvote_count.php",
+			"settings":
+			{
+				"buffer_size": 1191,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.php",
+			"settings":
+			{
+				"buffer_size": 8635,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "signin.html",
+			"settings":
+			{
+				"buffer_size": 3441,
+				"line_ending": "Unix",
+				"name": "<html>"
+			}
+		}
 	],
 	"build_system": "Packages/Ruby/Ruby.sublime-build",
 	"command_palette":
@@ -120,11 +252,19 @@
 	},
 	"file_history":
 	[
+		"/Applications/MAMP/htdocs/News/signin.php",
+		"/Applications/MAMP/htdocs/News/signup.css",
+		"/Applications/MAMP/htdocs/News/signup.js",
+		"/Applications/MAMP/htdocs/News/index.php",
+		"/Applications/MAMP/htdocs/News/config.php",
+		"/Applications/MAMP/htdocs/News/upvote.php",
+		"/Applications/MAMP/htdocs/News/login.html",
+		"/Applications/MAMP/htdocs/News/header.html",
+		"/Applications/MAMP/htdocs/News/style.cs",
+		"/Applications/MAMP/htdocs/News/logout.php",
+		"/Applications/MAMP/htdocs/News/News.sublime-workspace",
 		"/Applications/MAMP/htdocs/upload.php",
 		"/Applications/MAMP/htdocs/News/signup.php",
-		"/Applications/MAMP/htdocs/News/config.php",
-		"/Applications/MAMP/htdocs/News/login.html",
-		"/Applications/MAMP/htdocs/News/index.php",
 		"/Applications/MAMP/htdocs/News/index.html",
 		"/Applications/MAMP/htdocs/config.php",
 		"/Applications/MAMP/htdocs/easy-sql/login.php",
@@ -189,6 +329,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"namaste",
+			"								<input style=\"margin-bottom: 15px;\" type=\"password\" placeholder=\"Password\" id=\"password\" name=\"signupPassword\">\n",
+			"a",
+			"margin-left:auto;",
+			"text",
+			"\n  ",
+			"header",
+			".html",
+			"sign in",
+			";\">",
+			"table",
 			"conn",
 			"imagecreatefrom",
 			"imagecopyresized",
@@ -305,8 +456,253 @@
 	"groups":
 	[
 		{
+			"selected": 7,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "logout.php",
+					"settings":
+					{
+						"buffer_size": 184,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								181,
+								181
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "signup.php",
+					"settings":
+					{
+						"buffer_size": 973,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								726,
+								726
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "header.php",
+					"settings":
+					{
+						"buffer_size": 3576,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3576,
+								3576
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 891.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "submit_post.php",
+					"settings":
+					{
+						"buffer_size": 2485,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1031,
+								1031
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 105.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "style.css",
+					"settings":
+					{
+						"buffer_size": 1234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								431,
+								431
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "login.php",
+					"settings":
+					{
+						"buffer_size": 4516,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2439,
+								4515
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1554.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "upvote_count.php",
+					"settings":
+					{
+						"buffer_size": 1191,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								124,
+								124
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "index.php",
+					"settings":
+					{
+						"buffer_size": 8635,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5457,
+								5457
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2375.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "signin.html",
+					"settings":
+					{
+						"buffer_size": 3441,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3432,
+								2724
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<html>",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -316,7 +712,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 33.0
 	},
 	"layout":
 	{
@@ -370,6 +766,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 151.0,
+	"side_bar_width": 194.0,
 	"status_bar_visible": true
 }

@@ -57,32 +57,34 @@ if(isset($loginUser) && isset($loginPassword)){
 			}
 ?>
 
-		<h2>### SUBMIT NEWS URL ###</h2>
+		<!--<h2>### SUBMIT NEWS URL ###</h2>
 			<form class="form" method="post" action="submit_post.php">
 			      <p class="field">
 			        <input type="text" name="url" placeholder="Enter URL here"/>
 			        <i class="fa fa-user"></i>
 			      </p>
 
-			      <p class="submit"><input type="submit" name="s_url" value="Submit"></p>
+			      <p class="submit"><input type="submit" name="s_url" value="Submit"></p>-->
 <?php
 	}
 if(isset($_POST['s_url'])){
 		$url = $_POST['url'];
 		$title = get_title($url);
-		$id = fetchID();
+		$id = fetchID($conn, $loginUser);
 		$query = "INSERT INTO posts_table (ID, Title, URL, time_stamp, by_user_id) VALUES (NULL,'$title','$url',NOW()," . $id . ")";
 		$result = $conn->query($query);	
 		if(!$result){
 			echo $conn->error;
 		}
+	echo "<script>parent.location.href='index.php'</script>";
+
 	}
 }
 else
 {
 	echo "You have to be logged in to submit. Redirecting...";
 	sleep(10);
-	echo "<script>parent.location.href='login.php?submit=yes'</script>";
+	echo "<script>parent.location.href='index.php'</script>";
 
 }
 ?>
