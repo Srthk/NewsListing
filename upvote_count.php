@@ -30,6 +30,11 @@ if(isset($_GET['for']) && isset($loginUser)){
 $posts_query = "SELECT up_votes FROM posts_table WHERE ID=" . $_GET['for'];
 $posts_result = $conn->query($posts_query);
 $posts_row = mysqli_fetch_array($posts_result);
-echo $posts_row[0] . "," . $flag;
+
+if($posts_row[0] == 1)
+	echo $posts_row[0] . " point," . $flag;
+else
+	echo $posts_row[0] . " points," . $flag;
+
 }
 ?>

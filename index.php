@@ -3,87 +3,25 @@ header('Content-type: text/html; charset=utf-8');
 
 include('config.php');
 $conn = new mysqli(HOST,USER,PASSWORD,DATABASE);
-function time_elapsed_string($datetime, $full = false) {
-    $now = new DateTime;
-    $ago = new DateTime($datetime);
-    $diff = $now->diff($ago);
-
-    $diff->w = floor($diff->d / 7);
-    $diff->d -= $diff->w * 7;
-
-    $string = array(
-        'y' => 'year',
-        'm' => 'month',
-        'w' => 'week',
-        'd' => 'day',
-        'h' => 'hour',
-        'i' => 'minute',
-        's' => 'second',
-    );
-    foreach ($string as $k => &$v) {
-        if ($diff->$k) {
-            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-        } else {
-            unset($string[$k]);
-        }
-    }
-
-    if (!$full) $string = array_slice($string, 0, 1);
-    return $string ? implode(', ', $string) . ' ago' : 'just now';
-}
-function favicon($url){
-$doc = new DOMDocument();
-$doc->strictErrorChecking = FALSE;
-$doc->loadHTML(file_get_contents($url));
-$xml = simplexml_import_dom($doc);
-$arr = $xml->xpath('//link[@rel="shortcut icon"]');
-return $arr[0]['href'];
-}
-function get_title($url){
-  $str = file_get_contents($url);
-  if(strlen($str)>0){
-    $str = trim(preg_replace('/\s+/', ' ', $str)); // supports line breaks inside <title>
-    preg_match("/\<title\>(.*)\<\/title\>/i",$str,$title); // ignore case
-    return $title[1];
-  }
-}
+mysqli_set_charset($conn,"utf8");
+include('functions.php');
 ?>
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" type="image/png" href="https://news.ycombinator.com/favicon.ico"/>
 
 
 	<link href="style.css" rel="stylesheet">
-	<script>
-	function showCount(id) {
-	        var xmlhttp = new XMLHttpRequest();
-	        xmlhttp.onreadystatechange = function() {
-	            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-	                var str = xmlhttp.responseText.split(",");
-	                if(str == ""){
-	                	document.location = "login.php?submit=yes";
-	                	return;
-	                }
-	                document.getElementById("upcount" + id).innerHTML = str[0];
-	                if(str[1] == "up"){
-					$('#upvote' + id).removeClass('down');
-					$('#upvote' + id).addClass('up');
-	                }	
-	                else if(str[1] == "down"){
-					$('#upvote' + id).removeClass('up');
-					$('#upvote' + id).addClass('down');
-	                }
-	            }
-	        }
-	        xmlhttp.open("GET", "upvote_count.php?for=" + id, true);
-	        xmlhttp.send();
-	    }
-	</script>
+	<script src="script.js"></script>
+	<title>Sarthak's Hacker News</title>
 </head>
+
 <body>
 <div class="container-fluid">
 <?php
@@ -103,6 +41,8 @@ if(isset($loginUser) && isset($loginPassword)){
 	if(!$result){
 		echo $conn->error;
 		echo "Incorrect username.";
+		session_destroy();
+		echo "</br><a href='index.php'>Go Back</a>";
 		die();
 	}
 	else{
@@ -110,75 +50,52 @@ if(isset($loginUser) && isset($loginPassword)){
 		$row = mysqli_fetch_assoc($result);
 
 		if($row['user_pass'] == $loginPassword){
-			//echo "Login Succesful.";
+			//Succesful Login
 			$_SESSION['valid'] = "YES";
 			$valid = $_SESSION['valid'];
-			//echo "</br>Namaste, " . $loginUser;
-			//echo "</br><a href='logout.php'>Sign Out</a>";
-		}
+
+			}
 		else
 			{	$_SESSION['valid'] = "No";
-				echo "Incorrect Password";
+				echo "Incorrect Password or Username </br>";
+				session_destroy(); //destroy the session
+				echo "<a href='index.php'>Go Back</a>";
 				die();
 			}
 	}
-	//UPVOTE COUNT
-	/*
-	if(isset($_GET['for'])){
 
-		if($result = $conn->query("SELECT up_votes FROM user_table WHERE user_name = '$loginUser'")){
-				$table_id = $_GET['for'];
-				$row = mysqli_fetch_array($result);
-				$posts = explode(",",$row[0]); //To fetch all posts upvoted by user
-
-				if($row[0]==NULL){
-
-					echo $query = "UPDATE user_table SET up_votes = '$table_id' WHERE user_name = '$loginUser'";
-			        $result = $conn->query($query);
-
-					echo $query = "UPDATE posts_table SET up_votes = up_votes + 1 WHERE ID = $table_id";
-					$result = $conn->query($query);
-				}
-			else{
-					$flag=0;
-					foreach($posts as $x){
-						if($x == $table_id){
-							$flag = 1;
-							break;
-						}
-					}
-					if($flag==0){
-						echo $query = "UPDATE user_table SET up_votes = concat(up_votes, ',$table_id') WHERE user_name = '$loginUser'";
-						$result = $conn->query($query);
-						if(!$result)
-						echo $conn->error;
-
-						echo $query = "UPDATE posts_table SET up_votes = up_votes + 1 WHERE ID = $table_id";
-						$result = $conn->query($query);
-
-						if(!$result)
-						echo $conn->error;
-					}
-			}		
-		}
-	}*/
-
+	//SUBMITTING POST
 	if(isset($_POST['s_url'])){
 		$url = $_POST['url'];
 		$title = get_title($url);
 		$id = fetchID($conn, $loginUser);
+		$title = htmlentities($title);
 		$query = "INSERT INTO posts_table (ID, Title, URL, time_stamp, by_user_id) VALUES (NULL,'$title','$url',NOW()," . $id . ")";
 		$result = $conn->query($query);	
 		if(!$result){
 			echo $conn->error;
+			echo "</br><a href='index.php'>Go Back</a>";
+			die();
 		}
 	echo "<script>parent.location.href='index.php'</script>";
+	}
 
+	//To delete post by user
+	if(isset($_GET['del'])){
+		$del_id = $_GET['del'];
+		$delQuery = $conn->query("SELECT by_user_id FROM posts_table WHERE id =" . $del_id);
+		$delRes = mysqli_fetch_array($delQuery);
+		if($delRes[0] == fetchID($conn, $loginUser)){
+			$delQuery = $conn->query("DELETE FROM posts_table WHERE id = " . $del_id);
+			if(!$delQuery){
+				echo "Error while deleting.";
+				echo "</br><a href='index.php'>Go Back</a>";
+				die();
+			}
+		}
 	}
 }
 else{
-	//echo "<a href='login.html'>Sign In / Sign Up</a>";
-	//echo "</br>Namaste, Guest";
 	if(isset($_GET['for'])){
 	echo "<script>parent.location.href='login.php';</script>";
 	}
@@ -191,22 +108,51 @@ include("header.php");
 <table>
 <?php
 
-$posts_query = "SELECT * FROM posts_table ORDER BY ID DESC";
+//Which posts to display
+if(isset($_GET['postsby'])){
+	$posts_by = fetchID($conn, $_GET['postsby']);
+	$posts_query = "SELECT * FROM posts_table WHERE by_user_id = " . $posts_by . " ORDER BY ID DESC";
+	echo "<p class='span7 text-center'>Posts by: " . $_GET['postsby'] . "</h2>";
+	$count = 0;
+}
+else if(isset($_GET['page'])){
+	$offset = 20 * $_GET['page'];
+	$posts_query = "SELECT * FROM posts_table ORDER BY ID DESC" . " LIMIT $offset," . ($offset + 20);
+	$count = $offset;
+}
+else {
+	$posts_query = "SELECT * FROM posts_table ORDER BY ID DESC LIMIT 20";
+	$count = 0;
+}
+
 $posts_result = $conn->query($posts_query);
+	
+mysqli_set_charset($conn,"utf8");
 
 if(!$posts_query)
 echo $conn->error;
 
-$count=0;
+//DISPLAYING POSTS
 while($posts_row = mysqli_fetch_array($posts_result)){
 	if($count < 30){
 	$link = $posts_row[2];
 	$title = $posts_row[1];
+	$title = html_entity_decode($title);
 	$id = $posts_row[0]; //ID of the post
 	$votes = $posts_row[3];
 	$time = $posts_row[4];
+
+	if($votes == 1){
+		$votes = $votes . " point";
+	}
+	else 
+		$votes = $votes . " points";
+
 	$res = $conn->query("SELECT user_name FROM user_table WHERE id=" . $posts_row[5]); //To fetch username of creator of post
+	
 	$post_user = mysqli_fetch_array($res);
+	
+	mysqli_set_charset($conn,"utf8");
 
 	if(isset($loginUser)){
 		$loginID = fetchID($conn, $loginUser);
@@ -222,7 +168,11 @@ while($posts_row = mysqli_fetch_array($posts_result)){
 
 	}
 	else if(isset($loginID)){
-			echo "<td>"  . "<span id='upvote$id' class='down' onclick='showCount($id)'><i class='fa fa-caret-up'></i></span></td>"; 
+			if($post_user[0] == $loginUser){
+				echo "<td style='color:orange;'>" . "--" . "</td>"; //Disable upvote button if post is by same user as logged in
+			}
+			else 
+				echo "<td>"  . "<span id='upvote$id' class='down' onclick='showCount($id)'><i class='fa fa-caret-up'></i></span></td>"; 
 	}
 	else{
 		echo "<td>"  . "<a href='#' data-toggle='modal' data-target='#loginModal' class='down'><span id='upvote$id' class='down'><i class='fa fa-caret-up'></i></span></a></td>"; 
@@ -230,14 +180,43 @@ while($posts_row = mysqli_fetch_array($posts_result)){
 	}
 	$img = "<img src='http://www.google.com/s2/favicons?domain=" . $link . "' height='16'>";
 
-	echo "<td rowspan='2'>" . $img . "</td><td><a href='" . $link . "' target='_BLANK'>" . $title . "</a></td></tr><tr style='height: 0;'><td colspan='2'></td><td><span class='points'><span id='upcount$id' class='points'>". $posts_row[3] . "</span> points | </span><span class='points'>shared by <a href='#' class='points'>" . $post_user[0] . "</a> | " . time_elapsed_string($time) . "</span></td></tr>"; 
+	echo "<td rowspan='2'>" . $img . "</td><td><a href='" . $link . "' target='_BLANK'>" . $title . "</a></td></tr><tr style='height: 0;'><td colspan='2'></td><td><span id='upcount$id' class='points'>". $votes . " </span><span class='points'>| shared by <a href='index.php?postsby=" . $post_user[0] . "' class='points'>" . $post_user[0] . "</a> | " . time_elapsed_string($time) . "</span>"; 
+	if(isset($loginUser)){
+		if($post_user[0] == $loginUser){
+		echo "<span class='points'> | <a href='index.php?del=" . $id . "' class='points' >Delete</a></span></td></tr>";
+		}
+	}
+	else
+		echo "</tr>";
 	$count++;
 	}
+}
+
+//List 20 posts at a time
+
+if(isset($_GET['page'])){
+	$page = $_GET['page'] + 1;
+}
+else
+	$page = 1;
+
+$res=$conn->query("SELECT COUNT(*) FROM posts_table");
+$row=mysqli_fetch_array($res); //Total number of posts
+
+if($row[0] > ($page * 20) ){
+echo "<tr><td colspan='4' class='next'><a class='back-next' href='index.php?page=" . ($page - 1) . "'>< Back </a>";
+echo "&nbsp;<a href='index.php?page=" . $page . "' class='back-next'>Next ></a></td></tr>";
+}
+else{
+echo "<tr><td colspan='4' class='next'><a class='back-next' href='index.php?page=" . ($page - 2). "'>< Back </a>";
+echo "&nbsp;<a class='back-next' href='index.php?page=0'>Next ></a></tr>";
 }
 ?>
 </table>
 </div>
-<!--LOGIN POPUP-->
+
+<!--LOGIN / SIGN UP POPUP-->
+
 <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
   <div class="modal-dialog">
   <div class="modal-content">
@@ -265,13 +244,16 @@ while($posts_row = mysqli_fetch_array($posts_result)){
       <div class="modal-body">
           <form class="form center-block" method="POST" action="signup.php">
             <div class="form-group">
-              <input type="text" class="form-control input-lg" name="signupUser" placeholder="Username">
+              <input type="text" class="form-control input-lg" name="signupUser" id='signupUser' placeholder="Username" onchange="verifyUserName(this.value)" required>
+              <p id='userValidation'></p>
             </div>
             <div class="form-group">
-              <input type="password" class="form-control input-lg" name="signupPassword" placeholder="Password">
+              <input type="password" class="form-control input-lg" id="signupPassword" name="signupPassword" placeholder="Password" onchange="checkPassword();" required>
+              <p id="divCheckPassword"></p>
             </div>
             <div class="form-group">
-              <input type="password" class="form-control input-lg" name="rePassword" placeholder="Re-enter Password">
+              <input type="password" class="form-control input-lg" id="rePassword" name="rePassword" placeholder="Re-enter Password" onchange="checkPasswordMatch();" required>
+              <p id="divCheckPasswordMatch"></p>
             </div>
             <div class="form-group">
               <button class="btn btn-primary btn-lg btn-block" type="submit" name="s2">Sign Up</button>
@@ -287,7 +269,9 @@ while($posts_row = mysqli_fetch_array($posts_result)){
   </div>
   </div>
 </div>
+
 <!--SUBMIT POPUP-->
+
 <div id="submitModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
   <div class="modal-dialog">
   <div class="modal-content">
@@ -296,15 +280,24 @@ while($posts_row = mysqli_fetch_array($posts_result)){
           <h2 class="text-center">SUBMIT POST</h2>
       </div>
       <div class="modal-body">
-          <form class="form center-block" method="POST" action="index.php">
+          <form class="form center-block" method="POST" action="index.php" onsubmit="return validation();">
             <div class="form-group">
-              <input type="url" class="form-control input-lg" name="url" placeholder="Enter URL here">
+              <input type="url" class="form-control input-lg" name="url" placeholder="Enter URL here" required>
+            *Please prepend URLs with protocols. (example - http://www.facebook.com)            
             </div>
             <div class="form-group">
-              <button class="btn btn-primary btn-lg btn-block" type="submit" name="s_url">Submit</button>
+              <button id='s_post' class="btn btn-primary btn-lg btn-block" type="submit" name="s_url">Submit</button>
+              <span id='waiting' style='display:none;' class='text-center'><img src="http://62.50.72.82/UCIBWS/Content/Images/loading.gif" height='50'>Processing...</span>
             </div>
            </form>
        </div>
   </div>
   </div>
 </div>
+    <br>
+
+<div class="panel panel-default">
+    <div class="panel-footer">Copyright &copy; Sarthak Singhal | Hacker News 2015 | <a href="https://twitter.com/sarthak003" target="_BLANK">Follow Me</a></div>
+  </div>
+</body>
+</html>

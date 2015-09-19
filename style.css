@@ -5,11 +5,11 @@ body{
 #content{
 	background-color: #F0F0EE;
 }
+
 table th{
 	background-color: #0B6FDE;
 	color: #fff;
 	transition: all 0.3s;  /* Simple transition for hover effect */
-
 }
 
 table td{
@@ -96,4 +96,18 @@ text-decoration: none;
 }
 #or{
 	border-bottom: 3px dotted #000;
+}
+a.back-next{
+	border-radius: 5px;
+	padding: 0px 20px 0px 20px;
+	background-color: #0B6FDE;
+	color: #fff;
+}
+
+td.next a:link, td.next a:visited{
+	color: #fff;
+}
+td.next a:hover{
+	background-color: #000;
+	text-decoration: none;
 }

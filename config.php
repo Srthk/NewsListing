@@ -20,6 +20,7 @@ function fetchID($conn, $loginUser){
 	$loginID = $id[0];
 	return $loginID;
 }
+
 //$_SESSION['valid']="NO";
 
 ?>

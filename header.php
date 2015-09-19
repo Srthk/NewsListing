@@ -3,14 +3,7 @@ $conn = new mysqli(HOST,USER,PASSWORD,DATABASE);
 ?>
 <html>
 <head>
-	<script type="text/javascript">
-		$(document).ready(function(){
-		    //Handles menu drop down
-		    $('.dropdown-menu').find('form').click(function (e) {
-		        e.stopPropagation();
-		    });
-		});
-	</script>
+	
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -58,9 +51,13 @@ else{
 						<a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign Up<strong class="caret"></strong></a>
 						<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
 							<form method="post" action="signup.php" accept-charset="UTF-8">
-								<input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="signupUser" size="30" required>
-								<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="signupPassword" size="30" required>
-								<input style="margin-bottom: 15px;" type="password" placeholder="Re-enter Password" id="password" name="rePassword" size="30" required>
+								<input style="margin-bottom: 15px;" type="text" placeholder="Username" id="usernameNav" name="signupUser" size="30" onchange="verifyUserNameNav(this.value)" required>
+								<p id='userValidationNav'></p>
+								<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="signupPasswordNav" name="signupPassword" size="30" onchange="checkPasswordNav()" required>
+								<p id='passwordCheck'></p>								
+								<input style="margin-bottom: 15px;" type="password" placeholder="Re-enter Password" id="rePasswordNav" name="rePassword" size="30"  onchange="checkPasswordMatchNav()" required>
+								<p id='passwordValidationNav'></p>
+
 								<input class="btn btn-primary btn-block" type="submit" id="sign-in" name="s2" value="Sign Up">
 								</form>
 
@@ -74,8 +71,6 @@ else{
 								<input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="user" size="30" required>
 								<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password" size="30" required>
 								<input class="btn btn-primary btn-block" type="submit" id="sign-in" name="s" value="Login">
-								<label style="text-align:center;margin-top:5px;margin-left:auto;margin-right:auto;display:block">OR</label>
-                                <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Sign Up" onclick="window.location='login.php';">
 								</form>
 
 						</div>
