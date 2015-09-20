@@ -5,10 +5,10 @@ Visit here: http://sarthaksinghal.esy.es/index.php
 
 ##Features
 * Login/Signup/Logout support along with validation
-* upvoting and disabling upvote option
-* User who submitted the post cannot upvote
+* upvoting and disabling upvote option (only available to logged in users)
+* User who submitted the post cannot upvote 
 * Vote count by default is 1 point
-* posting URLs of articles
+* posting URLs of articles (only available to logged in user)
 * URL appears as title of the actual post
 * Favicon of each article is fetched and displayed
 * User can delete his/her post
