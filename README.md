@@ -1,5 +1,7 @@
 # NewsListing
-PHP/MYSQL based news listing similar to Hacker News
+PHP/MYSQL based news listing similar to Hacker News.
+
+Visit here: http://sarthaksinghal.esy.es/index.php
 
 ##Features
 * Login/Signup/Logout support along with validation
