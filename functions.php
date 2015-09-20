@@ -45,7 +45,7 @@ function get_title_alt($url){
     $str = trim(preg_replace('/\s+/', ' ', $str)); // supports line breaks inside <title>
     preg_match("/\<title\>(.*)\<\/title\>/i",$str,$title); // ignore case
     if(isset($title[1]))
-    return $title[1];
+        return $title[1];
     else 
         return NULL;
   }

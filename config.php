@@ -21,6 +21,10 @@ function fetchID($conn, $loginUser){
 	return $loginID;
 }
 
+//define('TIMEZONE', 'Asia/Kolkata');
+
+//date_default_timezone_set(TIMEZONE);
+
 //$_SESSION['valid']="NO";
 
 ?>

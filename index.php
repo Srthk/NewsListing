@@ -3,6 +3,15 @@ header('Content-type: text/html; charset=utf-8');
 
 include('config.php');
 $conn = new mysqli(HOST,USER,PASSWORD,DATABASE);
+/*$now = new DateTime();
+$mins = $now->getOffset() / 60;
+$sgn = ($mins < 0 ? -1 : 1);
+$mins = abs($mins);
+$hrs = floor($mins / 60);
+$mins -= $hrs * 60;
+
+$offset = sprintf('%+d:%02d', $hrs*$sgn, $mins);
+$conn->query("SET time_zone='$offset';");*/
 mysqli_set_charset($conn,"utf8");
 include('functions.php');
 ?>
