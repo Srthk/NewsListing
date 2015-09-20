@@ -1,4 +1,5 @@
 <?php
+
 //Function to fetch time of post
 function time_elapsed_string($datetime, $full = false) {
     $now = new DateTime;
@@ -31,29 +32,32 @@ function time_elapsed_string($datetime, $full = false) {
 
 //Functions to get the title of post using URL
 function get_title_alt($url){
-  $str = file_get_contents($url);
+    ini_set('user_agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.11) Gecko/2009060215 Firefox/3.0.11');
 
+      $str = @file_get_contents($url);
+  if(!$str){
+    return NULL;
+  }
+  /*if(preg_match("/\<title\>#(.+)<\/title>#iU", $str, $t))  {
+        return trim($t[1]);
+     }*/
   if(strlen($str)>0){
     $str = trim(preg_replace('/\s+/', ' ', $str)); // supports line breaks inside <title>
-    preg_match("/\<title(.*)\>(.*)\<\/title\>/i",$str,$title); // ignore case
+    preg_match("/\<title\>(.*)\<\/title\>/i",$str,$title); // ignore case
     return $title[1];
   }
 }
 
 function get_title($url){
-
 $html = file_get_contents_curl($url);
 $str = $html;
 $doc = new DOMDocument();
 @$doc->loadHTML($html);
 $nodes = $doc->getElementsByTagName('title');
 
-$title = $nodes->item(0)->nodeValue;
-if($title == NULL){
+@$title = $nodes->item(0)->nodeValue;
+if($title == NULL || $title=="Access Denied"){
 	$title = get_title_alt($url);
-}
-if($title == NULL){
-	$title = $url ;
 }
 return $title;
 }
@@ -66,17 +70,13 @@ function file_get_contents_curl($url)
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-    curl_setopt($ch, CURLOPT_VERBOSE, true);
+    
 
     $data = curl_exec($ch);
-
 	if(!$data){
 	 printf("cUrl error (#%d): %s<br>\n", curl_errno($ch), htmlspecialchars(curl_error($ch)));
-		echo "</br><a href='index.php'>Go Back</a>";
-	 die();
 	}
 	curl_close($ch);
 	
