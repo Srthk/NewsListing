@@ -33,7 +33,11 @@ if(isset($_POST['s'])){
 	$_SESSION['password']=$pwd;
 	echo "<script>parent.location.href='index.php';</script>";
 }
-
+if(isset($_GET['signup'])){
+				$pwd=md5($_SESSION['password']);
+				$_SESSION['password']=$pwd;
+				$loginPassword=$pwd;
+	}
 if(isset($loginUser) && isset($loginPassword)){
 	$query = "SELECT user_name, user_pass FROM user_table where user_name='$loginUser'";
 	$result = $conn->query($query);
@@ -55,7 +59,7 @@ if(isset($loginUser) && isset($loginPassword)){
 			$valid = $_SESSION['valid'];
 
 			}
-		else
+		else 
 			{	$_SESSION['valid'] = "No";
 				echo "Incorrect Password or Username </br>";
 				session_destroy(); //destroy the session

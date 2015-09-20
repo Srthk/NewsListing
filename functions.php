@@ -74,8 +74,7 @@ function file_get_contents_curl($url)
     $data = curl_exec($ch);
 
 	if(!$data){
-	 printf("cUrl error (#%d): %s<br>\n", curl_errno($ch),
-           htmlspecialchars(curl_error($ch)));
+	 printf("cUrl error (#%d): %s<br>\n", curl_errno($ch), htmlspecialchars(curl_error($ch)));
 		echo "</br><a href='index.php'>Go Back</a>";
 	 die();
 	}

@@ -67,6 +67,6 @@ if(!$result){
 	echo $conn->error;
 }
 else
-echo "<script>parent.location.href='index.php'</script>";
+echo "<script>parent.location.href='index.php?signup=yes'</script>";
 }
 ?>
