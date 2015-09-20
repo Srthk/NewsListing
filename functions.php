@@ -44,7 +44,10 @@ function get_title_alt($url){
   if(strlen($str)>0){
     $str = trim(preg_replace('/\s+/', ' ', $str)); // supports line breaks inside <title>
     preg_match("/\<title\>(.*)\<\/title\>/i",$str,$title); // ignore case
+    if(isset($title[1]))
     return $title[1];
+    else 
+        return NULL;
   }
 }
 
@@ -76,7 +79,7 @@ function file_get_contents_curl($url)
 
     $data = curl_exec($ch);
 	if(!$data){
-	 printf("cUrl error (#%d): %s<br>\n", curl_errno($ch), htmlspecialchars(curl_error($ch)));
+	 //printf("cUrl error (#%d): %s<br>\n", curl_errno($ch), htmlspecialchars(curl_error($ch)));
 	}
 	curl_close($ch);
 	

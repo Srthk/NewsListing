@@ -80,7 +80,17 @@ if(isset($loginUser) && isset($loginPassword)){
 			}
 		$title = htmlentities($title);
 		$title = mysqli_real_escape_string($conn,$title);
+		$res = $conn->query("SELECT URL from posts_table WHERE URL = '$url'");
+		if($res){
+			$row = mysqli_fetch_array($res);
+			if($row[0] == $url){
+				echo "</br><h3> Cannot add post as URL already exists.</h3>";
 
+    			echo "</br><a href='index.php'><h2>Go Back</h2></a>";
+
+    			die();
+			}
+		}
 		$query = "INSERT INTO posts_table (ID, Title, URL, time_stamp, by_user_id) VALUES (NULL,'$title','$url',NOW()," . $id . ")";
 		$result = $conn->query($query);	
 		if(!$result){
@@ -88,14 +98,14 @@ if(isset($loginUser) && isset($loginPassword)){
 			echo "</br><a href='index.php'>Go Back</a>";
 			die();
 		}
-	if($title_flag=="yes"){
+	if($title_flag == "yes"){
 		echo "</br><h3>Error in fetching title. Website not allowing cURL/fetch_get_content() to work (Access Error). </br><br>>Using URL as title instead.</h3>";
 
     	echo "</br><a href='index.php'><h2>Go Back</h2></a>";
 
     	die();
 		}
-	else if($title_flag =="no"){
+	else if($title_flag == "no"){
 			echo "<script>parent.location.href='index.php'</script>";
 		}
 	}
